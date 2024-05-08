@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 
+# generate key
 '''
 def write_key():
     key = Fernet.generate_key()
@@ -9,6 +10,7 @@ def write_key():
 write_key()
 '''
 
+# load key
 def load_key():
     file = open("key.key", "rb")
     key = file.read()
@@ -20,6 +22,8 @@ def load_key():
 key = load_key() # + master_pwd.encode()
 fer = Fernet(key)
 
+
+# View password
 def view():
     with open('password.txt', 'r') as f:
         for line in f.readlines():
@@ -27,6 +31,7 @@ def view():
             user, passw = data.split("|")
             print("User:", user, "| Password:", fer.decrypt(passw.encode()).decode())
 
+# Add password
 def add():
     name = input("Account Name: ")
     passw = input("Password: ")
